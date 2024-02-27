@@ -105,7 +105,7 @@ one.iteration.local<-function(comm){
 #'@returns Iteration function return the original class object after run several iterations of death and birth events, such events should be accessed by attributes,see example.
 #'@seealso pool one.local metacomm
 #'@examples
-#'setseed(2024)
+#'set.seed(2024)
 #'mypool<-pool(J=1000,theta = 100,sigma=0.03)
 #'mypool #see the species pool
 #'attr(mypool,"richness") #only one richness recorded

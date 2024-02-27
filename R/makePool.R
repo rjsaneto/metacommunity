@@ -1,3 +1,25 @@
+#' Create a Pool of Species in Near Neutral Communities Models
+#'
+#' Function to run the pool of species to model in Near Neutral Metacommunities
+#'
+#'@param J The number of individuals in Species Pool
+#'@param theta Hubbels Fundamental Number of Biodiversity
+#'@param sigma the standard deviation for change the per capita fecundity parameter w
+#'@param ord Logical to make the decreasing ordination of abundance in species pool
+#'
+#'@returns pool function return a pool class object with Species label, Abundance and per capita fecundity parameter w. Such object also record richness and initial parameters in attributes
+#'@seealso iteration one.local metacomm
+#'@examples
+#'set.seed(2024)
+#'mypool<-pool(J=1000,theta = 100,sigma=0.03)
+#'mypool #see the species pool
+#'attributes(mypool)
+#'attr(mypool,"richness") #only one richness recorded
+#'
+#'mynewpool<-iteration(mypool)
+#'mynewpool
+#'attr(mynewpool,"richness") #a set of richness recorded
+
 #'@export
 pool<-function(J,theta,sigma,ord=T){
   #initial attributes of species pool

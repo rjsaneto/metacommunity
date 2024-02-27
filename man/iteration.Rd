@@ -18,7 +18,7 @@ Iteration function return the original class object after run several iterations
 Function to run a iteration procedure in Local and Pool Communities
 }
 \examples{
-setseed(2024)
+set.seed(2024)
 mypool<-pool(J=1000,theta = 100,sigma=0.03)
 mypool #see the species pool
 attr(mypool,"richness") #only one richness recorded
