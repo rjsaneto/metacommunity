@@ -1,3 +1,27 @@
+#' Create a local community in Near Neutral Communities Models
+#'
+#' Function to run the local community of species to model in Near Neutral Metacommunities
+#'
+#'@param pool An object of class pool
+#'@param jl The number of individuals in local species
+#'@param mig Migration rate number
+#'@param sigma the standard deviation for change the per capita fecundity parameter w
+#'@param wi Vector of wi to impose uniformity in wi for a set of local communities
+#'@param abonly Logical Use only abundance of species pool in migration events instead include per capita fecundity parameter w
+#'
+#'@returns pool function return a local class object with Species label, Abundance and per capita fecundity parameter w. Such object also record other parameters in attributes
+#'@seealso iteration pool metacomm
+#'@examples
+#'set.seed(2024)
+#'mypool<-pool(J=1000,theta = 100,sigma=0.03)
+#'mypool #see the species pool
+#'attributes(mypool)
+#'attr(mypool,"richness") #only one richness recorded
+#'
+#'mylocal<-one.local(mypool,jl=100,mig=0.3,sigma=0.02,wi=NULL,abonly=F)
+#'attributes(mylocal)
+#'attr(mylocal,"richness")
+
 #'@export
 one.local<-function(pool,jl,mig,sigma=NULL,wi=NULL,abonly=F){
   #function to creation of local community
