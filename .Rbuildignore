@@ -1,2 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\testes.R$
+^\hello.R$
+^\hello.Rd$

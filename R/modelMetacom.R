@@ -37,7 +37,7 @@ modelMetacomm<-function(J,theta,sigma,Jl,nloc,mig,loccomm="pool",abonly=F,nSim=5
     results<-rbind(results,temp)
   }
   if(!is.null(file)){
-    nome<-paste("model_",J,"_",theta,"_",sigma,"_",Jl,"_",nloc,"_",mig,"_",loccomm,sep="")
+    nome<-paste("model_",as.integer(J),"_",theta,"_",sigma,"_",Jl,"_",nloc,"_",mig,"_",loccomm,sep="")
     assign(nome,value = results)
     save(list = nome,file = file)
   }
