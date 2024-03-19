@@ -114,7 +114,7 @@ one.iteration.local<-function(comm){
 #'mynewpool
 #'attr(mynewpool,"richness") #a set of richness recorded
 #'@export
-iteration<-function(comm,breaks=1e4){
+iteration<-function(comm,breaks=1e6){
   i=0
 
   medRiq<-NULL
@@ -127,7 +127,7 @@ iteration<-function(comm,breaks=1e4){
     varRiq<-c(varRiq,mean(riq))
 
     i<-i+1
-    if(i>10000){
+    if(i>2000){
       med1<-mean(riq)
       med2<-mean(riq[1:(length(riq)-1)])
 
@@ -137,7 +137,7 @@ iteration<-function(comm,breaks=1e4){
       diferMed<-abs(med1-med2)
       diferVar<-abs(sqrt(var1)-sqrt(var2))
       diferRate<-abs((var1/med1)-(var2/med2))
-      if(breaks>=length(riq)){
+      if(breaks<=length(riq)){
         break
       }
       if(diferMed<=1e-5 & diferRate<=1e-5){

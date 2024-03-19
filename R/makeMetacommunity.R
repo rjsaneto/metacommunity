@@ -87,11 +87,10 @@ metacomm<-function(J,theta,sigma,Jl,nloc,mig,loccomm="pool",abonly=F,dataFrame=T
     results$sigma<-sigma
     results$feature<-loccomm
     results$theta<-theta
-    results$migration<-mig
     if(abonly){
-      results$newcome<-"neutral"
+      results$migration<-"neutral"
     }else{
-      results$newcome<-"fitness"
+      results$migration<-"fitness"
     }
     class(results)<-c("metacomm","data.frame")
   }else{

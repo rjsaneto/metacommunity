@@ -10,3 +10,11 @@ rad<-function(abundance,w=NULL){
   abundance<-abundance/sum(abundance)
   return(abundance)
 }
+
+cummean<-function(x){
+  result<-NULL
+  for(i in 1:length(x)){
+    result<-c(result,mean(x[1:i]))
+  }
+  return(result)
+}
