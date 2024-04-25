@@ -1,4 +1,4 @@
-#' A function to calculate the relative species abundance of the local communities.
+#' Calculate the relative species abundance of the local communities.
 #'
 #' Function to extract the arithmetic mean of the RSA from all simulations performed by the modelMetacomm function.
 #'

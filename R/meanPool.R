@@ -1,4 +1,4 @@
-#' A function to calculate the relative species abundance of the pool.
+#' Calculate the relative species abundance and W of the pool.
 #'
 #' Function to extract the arithmetic mean of the RSA and W from all simulations performed by the modelMetacomm function.
 #'
