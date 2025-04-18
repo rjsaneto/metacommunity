@@ -23,7 +23,7 @@
 #'attr(mylocal,"richness")
 
 #'@export
-one.local<-function(pool,jl,mig,sigma=NULL,wi=NULL,abonly=F){
+one.local<-function(pool,jl,mig,sigma=NULL,wi=NULL,abonly=F,exp=T){
   #function to creation of local community
   comm<-as.data.frame(pool)
   comm$abundance<-0
@@ -40,7 +40,11 @@ one.local<-function(pool,jl,mig,sigma=NULL,wi=NULL,abonly=F){
 
   #### If sigma is not null, create local own wi
   if(!is.null(sigma)){
-    comm$wi<-rnorm(n = nrow(comm),mean = 1,sd = sigma)
+    if(exp){
+      comm$wi<-rnorm(n = nrow(comm),mean = 0,sd = sigma)
+    }else{
+      comm$wi<-rnorm(n = nrow(comm),mean = 1,sd = sigma)
+    }
   }
 
   ### If wi is not null and have the same length of comm, export the wi
@@ -54,7 +58,7 @@ one.local<-function(pool,jl,mig,sigma=NULL,wi=NULL,abonly=F){
   if(abonly==T){
       probPool<-rad(pool$abundance)
   }else{
-      probPool<-rad(pool$abundance,pool$wi)
+      probPool<-rad(pool$abundance,pool$wi,exp=exp)
   }
 
   ##### first individual from pool

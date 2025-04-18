@@ -4,7 +4,7 @@
 \alias{iteration}
 \title{Iteration procedure of Near Neutral Communities}
 \usage{
-iteration(comm, breaks = 1e+06)
+iteration(comm, breaks = 1e+06, exp = T)
 }
 \arguments{
 \item{comm}{Object of class pool or local}

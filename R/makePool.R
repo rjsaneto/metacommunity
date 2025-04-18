@@ -21,11 +21,15 @@
 #'attr(mynewpool,"richness") #a set of richness recorded
 
 #'@export
-pool<-function(J,theta,sigma,ord=T){
+pool<-function(J,theta,sigma,ord=T,exp=T){
   #initial attributes of species pool
   abundance<-1
   species<-1
-  w<-rnorm(1,1,sigma)
+  if(exp){
+    w<-rnorm(1,0,sigma)
+  }else{
+    w<-rnorm(1,1,sigma)
+  }
 
   #pool creation procedure
   for(j in 2:J){
@@ -34,10 +38,15 @@ pool<-function(J,theta,sigma,ord=T){
       #if dice < theta... the new individual belong of a new species
       species<-c(species,max(species)+1)
       abundance<-c(abundance,1)
-      w<-c(w,rnorm(1,1,sigma))
+      if(exp){
+        w<-c(w,rnorm(1,0,sigma))
+      }else{
+        w<-c(w,rnorm(1,1,sigma))
+      }
     }else{
       #else the new individual belong of one of already species of pool
-      probtemp<-rad(abundance = abundance,w = w)
+      #probtemp<-rad(abundance = abundance,w = rep(1,length(abundance)))
+      probtemp<-rad(abundance = abundance,w = w,exp=exp)
 
       who<-sample(x = 1:length(species),size = 1,prob = probtemp)
       abundance[who]<-abundance[who]+1
@@ -64,12 +73,14 @@ pool<-function(J,theta,sigma,ord=T){
 #'@export
 print.pool<-function(x){
   cat("number of species:",richness(x$abundance),"\n")
-  if(nrow(x)>10){
-    print(head(as.data.frame(x),3))
+  temp<-x[x$abundance>0,]
+  temp<-temp[order(temp$abundance,decreasing=T),]
+  if(nrow(temp)>10){
+    print(head(as.data.frame(temp),3))
     cat(rep("\t.\n",3))
-    print(tail(as.data.frame(x),3))
+    print(tail(as.data.frame(temp),3))
   }else{
-    print.data.frame(x)
+    print.data.frame(temp)
   }
   invisible(x)
 }

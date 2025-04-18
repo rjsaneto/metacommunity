@@ -4,7 +4,7 @@
 \alias{one.local}
 \title{Create a local community in Near Neutral Communities Models}
 \usage{
-one.local(pool, jl, mig, sigma = NULL, wi = NULL, abonly = F)
+one.local(pool, jl, mig, sigma = NULL, wi = NULL, abonly = F, exp = T)
 }
 \arguments{
 \item{pool}{An object of class pool}

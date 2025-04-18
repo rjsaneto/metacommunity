@@ -47,10 +47,12 @@
 #'myMeta #see the species pool
 #'tapply(myMeta$wi,list(myMeta$species,myMeta$source),sum)
 #'@export
-metacomm<-function(J,theta,sigma,Jl,nloc,mig,loccomm="pool",abonly=F,dataFrame=T){
+metacomm<-function(J,theta,sigma,Jl,nloc,mig,loccomm="pool",abonly=F,dataFrame=T,exp=T,itera=T){
   # function to generate a metacommunity
-  mypool<-pool(J = J,theta = theta,sigma = sigma,ord = T)
-  mypool<-iteration(mypool,breaks = 1e6)
+  mypool<-pool(J = J,theta = theta,sigma = sigma,ord = T,exp=exp)
+  if(itera){
+    mypool<-iteration(mypool,breaks = 1e6,exp=exp)
+  }
 
   mylocal<-list()
   ## jl of the same number of individual, but we can insert a random fission procedure
@@ -60,7 +62,11 @@ metacomm<-function(J,theta,sigma,Jl,nloc,mig,loccomm="pool",abonly=F,dataFrame=T
   sigloc=NULL
   wi=NULL
   if(loccomm=="uniform"){
-    wi=rnorm(n = nrow(mypool),mean = 1,sd = sigma)
+    if(exp){
+      wi=rnorm(n = nrow(mypool),mean = 0,sd = sigma)
+    }else{
+      wi=rnorm(n = nrow(mypool),mean = 1,sd = sigma)
+    }
   }
 
   if(loccomm=="diversity"){
@@ -72,8 +78,10 @@ metacomm<-function(J,theta,sigma,Jl,nloc,mig,loccomm="pool",abonly=F,dataFrame=T
   }
 
   for(i in 1:length(jl)){
-    mylocal[[i]]<-one.local(pool = mypool,jl = jl[i],mig = mig,sigma = sigloc,wi = wi,abonly = abonly)
-    mylocal[[i]]<-iteration(mylocal[[i]],breaks = 1e6)
+    mylocal[[i]]<-one.local(pool = mypool,jl = jl[i],mig = mig,sigma = sigloc,wi = wi,abonly = abonly,exp = exp)
+    if(itera){
+      mylocal[[i]]<-iteration(mylocal[[i]],breaks = 1e6,exp = exp)
+    }
   }
 
   if(dataFrame){

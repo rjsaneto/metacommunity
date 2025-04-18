@@ -13,7 +13,9 @@ metacomm(
   mig,
   loccomm = "pool",
   abonly = F,
-  dataFrame = T
+  dataFrame = T,
+  exp = T,
+  itera = T
 )
 }
 \arguments{

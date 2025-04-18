@@ -29,10 +29,10 @@
 #'model_1000_100_0.03_100_3_0.25_diversity
 
 #'@export
-modelMetacomm<-function(J,theta,sigma,Jl,nloc,mig,loccomm="pool",abonly=F,nSim=5,file=NULL){
+modelMetacomm<-function(J,theta,sigma,Jl,nloc,mig,loccomm="pool",abonly=F,nSim=5,file=NULL,exp=T,itera=T){
   results<-NULL
   for(i in 1:nSim){
-    temp<-metacomm(J=J,theta=theta,sigma=sigma,Jl=Jl,nloc=nloc,mig=mig,loccomm=loccomm,abonly=abonly,dataFrame=T)
+    temp<-metacomm(J=J,theta=theta,sigma=sigma,Jl=Jl,nloc=nloc,mig=mig,loccomm=loccomm,abonly=abonly,dataFrame=T,exp=exp,itera=itera)
     temp$simulation<-i
     results<-rbind(results,temp)
   }

@@ -4,7 +4,7 @@
 \alias{pool}
 \title{Create a Pool of Species in Near Neutral Communities Models}
 \usage{
-pool(J, theta, sigma, ord = T)
+pool(J, theta, sigma, ord = T, exp = T)
 }
 \arguments{
 \item{J}{The number of individuals in Species Pool}

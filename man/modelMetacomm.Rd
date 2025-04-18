@@ -14,7 +14,9 @@ modelMetacomm(
   loccomm = "pool",
   abonly = F,
   nSim = 5,
-  file = NULL
+  file = NULL,
+  exp = T,
+  itera = T
 )
 }
 \arguments{
